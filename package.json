@@ -5,7 +5,9 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
+    "build":"tsc",
     "build:dev": "tsc --watch"
+    
   },
   "dependencies": {
     "@types/bcrypt": "^5.0.0",
