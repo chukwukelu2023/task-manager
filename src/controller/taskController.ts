@@ -16,7 +16,6 @@ export const createTask = async(req:Request,res:Response)=>{
 
 export const getAllTasks = async(req:Request,res:Response)=>{
     try {
-        console.log("user Id",req.user)
         const tasks = await getTasks()
         return res.status(200).send(tasks)
     } catch (error) {
