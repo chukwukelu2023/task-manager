@@ -1,6 +1,6 @@
-import ITask from "../interface/taskInterface";
 import { Tasks } from "../models/task";
 
+const date = new Date().toLocaleDateString()
 const saveTask = async(body:any)=>{
     const task = await Tasks.create(body)
     return task
@@ -21,11 +21,15 @@ const removeTask = async(task:Tasks)=>{
 }
 
 const updateTask = async(id:number, body:any)=>{
-    const task = await getTask(id)
-    return task?.update(body)
+    const task :any= await getTask(id)
+    const payload:any =  {}
+    payload.title = body.title || task?.title
+    payload.description = body.description || task?.description
+    payload.status = body.status || task?.status
+    return task?.update(payload)
 }
 
-const completeTaskService = async(id:number,userId:number)=>{
+const completeTaskService = async(id:number)=>{
     const task = await getTask(id)
     return task?.update({status:"COMPLETED",dateCompleted:new Date()})
 }
