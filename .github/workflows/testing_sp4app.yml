@@ -21,7 +21,7 @@ jobs:
     - name: Set up Node.js version
       uses: actions/setup-node@v1
       with:
-        node-version: '16-lts'
+        node-version: 'v16.20.2'
 
     - name: npm install, build, and test
       run: |
@@ -34,6 +34,6 @@ jobs:
       with:
         app-name: sp4App
         slot-name: Production
-        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D21D0A5B258E4EE582400FD8831D99C1 }}
+        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B0EBCA0972CA4BB9A86F6F43DD4BBDD2 }}
         package: .
 
