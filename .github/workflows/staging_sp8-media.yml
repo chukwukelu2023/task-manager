@@ -34,6 +34,6 @@ jobs:
       with:
         app-name: sp8-media
         slot-name: Production
-        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_151934C6BAAB423A9BBCC3486482E564 }}
+        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5AF71B7D7E4343E4B9570019A8BD6121 }}
         package: .
 
