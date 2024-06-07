@@ -1,0 +1,48 @@
+#Run my application with mysql database
+
+version: '3.1'
+
+services:
+  db:
+    image: mysql:8.0
+    # command: --default-authentication-plugin=caching_sha2_password
+    #restart: always
+    # container_name: mysql
+    environment:
+          # MYSQL_ROOT_PASSWORD: "example123"
+          # MYSQL_DATABASE : "property"
+          MYSQL_PASSWORD: "example123"
+          MYSQL_DATABASE : "property"
+          MYSQL_USER: "root"
+          MYSQL_RANDOM_ROOT_PASSWORD : "1"
+    healthcheck:
+          test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
+          interval: 25s
+          timeout: 20s
+          retries: 4
+          start_period: 40s
+    volumes:
+      - ./db/:/var/lib/mysql/
+
+  taskmanager-app:
+    build: ./
+    ports:
+      - "4500:4500"
+    environment:
+        TOKEN_KEY :  "TOKEN_KEY"
+        DB_PORT: 3306
+        HOST: db
+        DATABASE_USERNAME: "root"
+        DB_PASSWORD: "example123"
+        DATABASE: "property"
+        PORT: 4500
+        DIALECT: "mysql"
+
+    depends_on:
+       db:
+        condition: service_healthy
+
+    stdin_open: true
+    tty: true
+volumes:
+  db: 
