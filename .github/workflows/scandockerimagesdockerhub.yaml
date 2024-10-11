@@ -44,6 +44,10 @@ jobs:
           severity: 'CRITICAL,HIGH'
           output:  trivy-report.json
 
+      - name: Run CLI
+        run: |
+          ls -lh
+
       - name: Upload Trivy Report
         if: always()
         uses: actions/upload-artifact@v3
