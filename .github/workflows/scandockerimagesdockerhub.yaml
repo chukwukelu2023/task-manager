@@ -37,20 +37,16 @@ jobs:
         uses: aquasecurity/trivy-action@0.20.0
         with:
           image-ref: 'oluchioraekwe/taskmanger:v5.1'
-          format: 'table'
+          format: 'json'
           exit-code: '0'
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
+          output:  trivy-report.json
 
-      # # Step 4: Install Trivy (Security Scanner)
-      # - name: Install Trivy
-      #   run: |
-      #     sudo apt-get install wget -y
-      #     wget https://github.com/aquasecurity/trivy/releases/latest/download/trivy_0.45.1_Linux-64bit.deb
-      #     sudo dpkg -i trivy_0.45.1_Linux-64bit.deb
-
-      # # Step 5: Run Trivy Scan on the Docker image
-      # - name: Scan Docker Image with Trivy
-      #   run: |
-      #     trivy image nginx:latest  # Replace 'nginx:latest' with your image
+      - name: Upload Trivy Report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: trivy-report
+          path: trivy-report.json
