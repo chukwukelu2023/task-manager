@@ -34,6 +34,7 @@ jobs:
         run: docker pull oluchioraekwe/taskmanger:v5.1
 
       - name: Run Trivy vulnerability scanner
+        id: trivy_scan
         uses: aquasecurity/trivy-action@0.20.0
         with:
           image-ref: 'oluchioraekwe/taskmanger:v5.1'
@@ -44,9 +45,21 @@ jobs:
           severity: 'CRITICAL,HIGH'
           output:  trivy-report.json
 
+      - name: Microsoft Teams Notification
+        uses: skitionek/notify-microsoft-teams@master
+        if: always()
+        with:
+          webhook_url: ${{ secrets.MSTEAMS_WEBHOOK }}
+          # needs: ${{ toJson(needs) }}
+          # job: ${{ toJson(job) }}
+          # steps: ${{ steps.trivy_scan.outputs.trivy-report.json }}
+          raw : ${{ steps.trivy_scan.outputs.trivy-report.json }}
+          dry_run: True
+
       - name: Run CLI
         run: |
           ls -lh
+          cat trivy-report.json
 
       - name: Upload Trivy Report
         if: always()
