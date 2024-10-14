@@ -50,6 +50,8 @@ jobs:
         run: |
           ls -lh
           REPORT=$(cat trivy-report.json)
+          echo "Hello World!"
+          echo $REPORT
           echo "value=$REPORT" >> $GITHUB_OUTPUT
           echo $GITHUB_OUTPUT
 
