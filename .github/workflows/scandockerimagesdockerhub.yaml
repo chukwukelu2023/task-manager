@@ -45,7 +45,7 @@ jobs:
           severity: 'CRITICAL,HIGH'
           output:  trivy-report.json
 
-      - name: Save scan result
+      - name: Save scan result.
         id: trivy_output
         run: |
           ls -lh
