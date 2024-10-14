@@ -45,25 +45,32 @@ jobs:
           severity: 'CRITICAL,HIGH'
           output:  trivy-report.json
 
-      - name: Microsoft Teams Notification
-        uses: skitionek/notify-microsoft-teams@master
-        if: always()
-        with:
-          webhook_url: ${{ secrets.MSTEAMS_WEBHOOK }}
-          # needs: ${{ toJson(needs) }}
-          # job: ${{ toJson(job) }}
-          # steps: ${{ steps.trivy_scan.outputs.trivy-report.json }}
-          raw : ${{ steps.trivy_scan.outputs.trivy-report.json }}
-          dry_run: True
-
-      - name: Run CLI
+      - name: Run Trivy vulnerability scanner
+        id: trivy_output
         run: |
-          ls -lh
-          echo ${{ steps.trivy_scan.outputs.trivy-report.json }}
+          OUTPUT = $(cat trivy-report.json )
+          echo "result=$OUTPUT" >> $GITHUB_OUTPUT
+          echo $GITHUB_OUTPUT
 
-      - name: Upload Trivy Report
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: trivy-report
-          path: trivy-report.json
+      # - name: Microsoft Teams Notification
+      #   uses: skitionek/notify-microsoft-teams@master
+      #   if: always()
+      #   with:
+      #     webhook_url: ${{ secrets.MSTEAMS_WEBHOOK }}
+      #     # needs: ${{ toJson(needs) }}
+      #     # job: ${{ toJson(job) }}
+      #     # steps: ${{ steps.trivy_scan.outputs.trivy-report.json }}
+      #     raw : ${{ steps.trivy_scan.outputs.trivy-report.json }}
+      #     dry_run: True
+
+      # - name: Run CLI
+      #   run: |
+      #     ls -lh
+      #     echo ${{ steps.trivy_scan.outputs.trivy-report.json }}
+
+      # - name: Upload Trivy Report
+      #   if: always()
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: trivy-report
+      #     path: trivy-report.json
