@@ -55,21 +55,20 @@ jobs:
           echo "EOF" >> $GITHUB_OUTPUT
           echo $GITHUB_OUTPUT
 
-      # - name: Microsoft Teams Notification
-      #   uses: skitionek/notify-microsoft-teams@master
-      #   if: always()
-      #   with:
-      #     webhook_url: ${{ secrets.MSTEAMS_WEBHOOK }}
-      #     # needs: ${{ toJson(needs) }}
-      #     # job: ${{ toJson(job) }}
-      #     # steps: ${{ steps.trivy_scan.outputs.trivy-report.json }}
-      #     raw : ${{ steps.trivy_scan.outputs.trivy-report.json }}
-      #     dry_run: True
+      - name: Microsoft Teams Notification
+        uses: skitionek/notify-microsoft-teams@master
+        if: always()
+        with:
+          webhook_url: ${{ secrets.MSTEAMS_WEBHOOK }}
+          # needs: ${{ toJson(needs) }}
+          # job: ${{ toJson(job) }}
+          # steps: ${{ steps.trivy_scan.outputs.trivy-report.json }}
+          raw : ${{ steps.trivy_output.outputs.trivy }}
+          dry_run: True
 
-      # - name: Run CLI
-      #   run: |
-      #     ls -lh
-      #     echo ${{ steps.trivy_scan.outputs.trivy-report.json }}
+      - name: Run CLI
+        run: |
+          echo ${{ steps.trivy_output.outputs.trivy }}
 
       # - name: Upload Trivy Report
       #   if: always()
