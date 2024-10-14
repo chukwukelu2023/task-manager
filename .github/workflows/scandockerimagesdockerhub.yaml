@@ -49,6 +49,7 @@ jobs:
         id: trivy_output
         run: |
           ls -lh
+          cat trivy-report.json
           RESULT=$(cat trivy-report.json)
           echo "value=$RESULT" >> $GITHUB_OUTPUT
           echo $GITHUB_OUTPUT
