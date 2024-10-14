@@ -66,10 +66,6 @@ jobs:
           raw : ${{ steps.trivy_output.outputs.trivy }}
           dry_run: True
 
-      - name: Run CLI
-        run: |
-          echo ${{ steps.trivy_output.outputs.trivy }}
-
       # - name: Upload Trivy Report
       #   if: always()
       #   uses: actions/upload-artifact@v3
