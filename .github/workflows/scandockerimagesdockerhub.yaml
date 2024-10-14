@@ -48,7 +48,7 @@ jobs:
       - name: Save scan result
         id: trivy_output
         run: |
-          OUTPUT=$(cat trivy-report.json )
+          OUTPUT=$(cat trivy-report.json)
           echo "result=$OUTPUT" >> $GITHUB_OUTPUT
           echo $GITHUB_OUTPUT
 
