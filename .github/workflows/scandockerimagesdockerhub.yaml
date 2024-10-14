@@ -48,8 +48,8 @@ jobs:
       - name: Save scan result
         id: trivy_output
         run: |
-          OUTPUT=$(cat trivy-report.json)
-          echo "result=$OUTPUT" >> $GITHUB_OUTPUT
+          RESULT=$(cat trivy-report.json)
+          echo "value=$RESULT" >> $GITHUB_OUTPUT
           echo $GITHUB_OUTPUT
 
       # - name: Microsoft Teams Notification
