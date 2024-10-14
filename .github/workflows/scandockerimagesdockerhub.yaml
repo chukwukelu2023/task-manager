@@ -53,13 +53,13 @@ jobs:
           # needs: ${{ toJson(needs) }}
           # job: ${{ toJson(job) }}
           # steps: ${{ steps.trivy_scan.outputs.trivy-report.json }}
-          raw : trivy-report.json
+          raw : ${{ steps.trivy_scan.outputs.trivy-report.json }}
           dry_run: True
 
       - name: Run CLI
         run: |
           ls -lh
-          cat trivy-report.json
+          echo ${{ steps.trivy_scan.outputs.trivy-report.json }}
 
       - name: Upload Trivy Report
         if: always()
