@@ -45,7 +45,7 @@ jobs:
           severity: 'CRITICAL,HIGH'
           output:  trivy-report.json
 
-      - name: Run Trivy vulnerability scanner
+      - name: Save scan result
         id: trivy_output
         run: |
           OUTPUT=$(cat trivy-report.json )
