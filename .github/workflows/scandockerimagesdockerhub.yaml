@@ -63,28 +63,28 @@ jobs:
           # needs: ${{ toJson(needs) }}
           # job: ${{ toJson(job) }}
           # steps: ${{ steps.trivy_scan.outputs.trivy-report.json }}
-          # raw : ${{ steps.trivy_output.outputs.trivy }}
-          raw: >-
-            {
-                "type": "message",
-                "attachments":
-                [
-                    {
-                        "contentType": "application/vnd.microsoft.card.adaptive",
-                        "content":
-                        {
-                            "type": "AdaptiveCard",
-                            "body":
-                            [
-                                {
-                                    "type": "TextBlock",
-                                    "text": "Test Scan Result"
-                                }
-                            ]
-                        }
-                    }
-                ]
-            }
+          raw : ${{ steps.trivy_output.outputs.trivy }}
+          # raw: >-
+          #   {
+          #       "type": "message",
+          #       "attachments":
+          #       [
+          #           {
+          #               "contentType": "application/vnd.microsoft.card.adaptive",
+          #               "content":
+          #               {
+          #                   "type": "AdaptiveCard",
+          #                   "body":
+          #                   [
+          #                       {
+          #                           "type": "TextBlock",
+          #                           "text": "Test Scan Result"
+          #                       }
+          #                   ]
+          #               }
+          #           }
+          #       ]
+          #   }
           # dry_run: True
 
       # - name: Upload Trivy Report
