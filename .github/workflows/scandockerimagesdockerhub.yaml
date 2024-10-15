@@ -85,7 +85,7 @@ jobs:
                     }
                 ]
             }
-          dry_run: True
+          # dry_run: True
 
       # - name: Upload Trivy Report
       #   if: always()
