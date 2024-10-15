@@ -79,7 +79,7 @@ jobs:
                                 {
                                     "type": "TextBlock",
                                     "text": "Test Result"
-                                }
+                                },
                                 ${{ steps.trivy_output.outputs.trivy }}
                             ]
                         }
