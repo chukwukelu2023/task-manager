@@ -6,7 +6,7 @@ on:
       - development
       - main
 jobs:
-  build_image_backend:
+  build_and_push:
     uses: chukwukelu2023/automation-hub/.github/workflows/image_build_ghcr.yaml@main
     with:
       context-path: .
