@@ -4,13 +4,13 @@ import { adminUser, authenticateuser } from '../utility/middleware';
 
 const router = Router()
 
-router.get("/",[authenticateuser,adminUser], getAllTasks)
-router.get("/:id", authenticateuser,getTaskById)
-router.post("/", authenticateuser,createTask)
-router.put("/update/:id", authenticateuser,updateTaskRecord)
-router.put("/complete/:id",authenticateuser,completeTaskController)
-router.delete("/:id",authenticateuser,deletetask)
-
+router.use(authenticateuser)
+router.get("/",adminUser, getAllTasks)
+router.get("/:id",getTaskById)
+router.post("/",createTask)
+router.put("/update/:id",updateTaskRecord)
+router.put("/complete/:id",completeTaskController)
+router.delete("/:id",deletetask)
 
 
 export default router

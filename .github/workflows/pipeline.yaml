@@ -1,0 +1,40 @@
+name: Build and Deploy Docker Image
+
+on: 
+  workflow_dispatch:
+    inputs:
+      container_registry:
+        description: 'Select the container registry for the image'
+        required: true
+        default: 'docker_hub'
+        type: choice
+        options:
+        - docker_hub
+        - github
+        - others
+  push:
+    branches:
+      - production
+      - main
+jobs:
+  build_and_push_github:
+    if:  inputs.container_registry == 'github' 
+    uses: chukwukelu2023/automation-hub/.github/workflows/image_build_dockerhub.yaml@main
+    with:
+      context-path: .
+      tag-name: ghcr.io/chukwukelu2023/taskmanager-app-prod:v.${{ github.run_number }}
+      registry_name: ghcr.io
+    secrets:
+       REGISTRY_PASSWORD: ${{ secrets.GHCR_PAT }}
+       REGISTRY_USERNAME: ${{ github.repository_owner }}
+
+  build_and_push_dockerhub:
+    if:  inputs.container_registry == 'dockerhub'
+    uses: chukwukelu2023/automation-hub/.github/workflows/image_build_dockerhub.yaml@main
+    with:
+      context-path: .
+      tag-name: oluchioraekwe/taskmanager-app-prod:v.${{ github.run_number }}
+      registry_name: docker.io
+    secrets:
+       REGISTRY_PASSWORD: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+       REGISTRY_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
