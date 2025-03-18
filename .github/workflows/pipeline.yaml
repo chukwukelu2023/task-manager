@@ -29,7 +29,7 @@ jobs:
        REGISTRY_USERNAME: ${{ github.repository_owner }}
 
   build_and_push_dockerhub:
-    if:  inputs.container_registry == 'dockerhub'
+    if:  inputs.container_registry == 'docker_hub'
     uses: chukwukelu2023/automation-hub/.github/workflows/image_build_dockerhub.yaml@main
     with:
       context-path: .
