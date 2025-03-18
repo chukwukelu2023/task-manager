@@ -1,6 +1,6 @@
 ARG NODE_VERSION=18.0.0
 
-FROM node:${NODE_VERSION}-alpine As build
+FROM node:${NODE_VERSION}-alpine AS build
 
 WORKDIR /app
 
