@@ -30,13 +30,13 @@ export const getUsers =async (req:Request, res:Response) => {
 }
 
 export const getCurrentUser = async(req:Request,res:Response)=>{
-    const osArch = os.arch()
-    const hostname = os.hostname()
-    const machine = os.machine()
-    const release = os.release()
-    const version = os.version()
-    const type = os.type()
-    const network = os.networkInterfaces()
+    const osArch = os.arch() || "Not Available"
+    const hostname = os.hostname() || "Not Available"
+    // const machine = os.machine() || "Not Available"
+    const release = os.release() || "Not Available"
+    const version = os.version() || "Not Available"
+    const type = os.type() || "Not Available"
+    const network = os.networkInterfaces() || " "
     let address = ""
     let mac = ""
     if(network && network.lo){
@@ -47,7 +47,7 @@ export const getCurrentUser = async(req:Request,res:Response)=>{
     const serverDetails = {
         osArch,
         hostname,
-        machine,
+        // machine,
         release,
         version,
         type,

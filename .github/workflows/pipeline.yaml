@@ -1,0 +1,16 @@
+name: Build and Deploy Docker Image
+
+on:
+  push:
+    branches:
+      - development
+      - main
+jobs:
+  build_image_backend:
+    uses: chukwukelu2023/automation-hub/.github/workflows/image_build_ghcr.yaml@main
+    with:
+      context-path: ./Backend
+      tag-name: ghcr.io/chukwukelu2023/taskmanager-app:${{ github.run_number }}
+    secrets:
+       GHCR_PAT: ${{ secrets.GHCR_PAT }}
+       REPO_OWNER: ${{ github.repository_owner }}
