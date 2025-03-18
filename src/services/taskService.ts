@@ -31,7 +31,7 @@ const updateTask = async(id:number, body:any)=>{
 
 const completeTaskService = async(id:number)=>{
     const task = await getTask(id)
-    return task?.update({status:"COMPLETED",dateCompleted:new Date()})
+    return task?.update({status:"COMPLETED",datecompleted:new Date()})
 }
 
 export {

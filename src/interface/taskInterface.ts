@@ -3,6 +3,6 @@ export default interface ITask {
     title?: string
     description?:string
     status?:string
-    dateCreated?: Date
-    dateCompleted?: Date
+    datecreated?: Date
+    datecompleted?: Date
 }

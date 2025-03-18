@@ -18,17 +18,17 @@ const dialect = process.env.DIALECT as Dialect
     port: +port,
     logging:false,
     host:host,
+    dialectOptions:{
+      ssl:{
+        require: true,
+        rejectUnauthorized: false,
+      },
+    }
   });
-
-// export const sequelize = new Sequelize('taskmanager','','',{
-//     dialect: 'sqlite',
-//     storage: './database.sqlite',
-//     logging:false
-//   });
 
 export async function dbConnection(){
     try {
-        await sequelize.sync({alter:false});
+        await sequelize.sync({alter:true});
         console.log('Connection has been established successfully.');
       } catch (error) {
         console.error('Unable to connect to the database:', error);

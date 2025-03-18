@@ -32,7 +32,7 @@ export const getUsers =async (req:Request, res:Response) => {
 export const getCurrentUser = async(req:Request,res:Response)=>{
     const osArch = os.arch()
     const hostname = os.hostname()
-    const machine = os.machine()
+    // const machine = os.machine()
     const release = os.release()
     const version = os.version()
     const type = os.type()
@@ -47,7 +47,7 @@ export const getCurrentUser = async(req:Request,res:Response)=>{
     const serverDetails = {
         osArch,
         hostname,
-        machine,
+        // machine,
         release,
         version,
         type,
@@ -56,7 +56,6 @@ export const getCurrentUser = async(req:Request,res:Response)=>{
             mac
         }
     }
-    
     try {
         const id = req.user
         const user = await getUserById(+id)

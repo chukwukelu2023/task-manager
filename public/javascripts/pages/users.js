@@ -32,9 +32,9 @@ function loadTableData(users){
         <td>${task.id}</td>
         <td>${task.title}</td>
         <td>${task.description}</td>
-        <td>${formatDate(task.dateCreated)}</td>
+        <td>${formatDate(task.datecreated)}</td>
         <td>${task.status}</td>
-        <td> ${formatDate(task.dateCompleted )}</td>
+        <td> ${formatDate(task.datecompleted )}</td>
         <td>
         </td>
   </tr>
@@ -58,7 +58,7 @@ if (hour < 12) welcomeText = "Good Morning";
 else if (hour < 18) welcomeText = "Good Afternoon";
 else welcomeText = "Good Evening";
 
-greetings.innerHTML = `<h1>${welcomeText} ${users.firstName} ${users.lastName}</h1>`
+greetings.innerHTML = `<h1>${welcomeText} ${users.firstname} ${users.lastname}</h1>`
   let taskPage = `<div>${users.tasks.length < 1 ? '<h2>You currently don\'t have any tasks click <a href="/pages/tasks.html">here</a> to create a new task</h2>': table}</div>
 `
     taskTable.innerHTML = taskPage

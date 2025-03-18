@@ -3,11 +3,11 @@ import { User } from "../models/user";
 import { hashedPassword } from "../utility/password";
 
 const getAllUsers = async ()=>{
-    return await User.findAll({attributes:['id','firstName','lastName','email'],include:Tasks})
+    return await User.findAll({attributes:['id','firstname','lastname','email'],include:Tasks})
 }
 
 const getUserById = async (id:number) =>{
-    const user =  await User.findByPk(id,{attributes:['id','firstName','lastName','email'], include:Tasks})
+    const user =  await User.findByPk(id,{attributes:['id','firstname','lastname','email'], include:Tasks})
     return user
 }
 

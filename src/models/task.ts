@@ -29,12 +29,12 @@ Tasks.init({
       isIn: [['PENDING', 'PROGRESS', 'ONHOLD', 'COMPLETED']]
     }
   },
-  dateCreated: {
+  datecreated: {
     type: DataTypes.DATE,
     allowNull: true,
     defaultValue: new Date()
   },
-  dateCompleted: {
+  datecompleted: {
     type: DataTypes.DATE,
     allowNull: true,
   },

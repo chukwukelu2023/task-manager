@@ -13,8 +13,8 @@ signUpForm.addEventListener("submit",  (e) => {
     alert("Passwords Did not Match");
   } else {
     const formBody = {
-        firstName:firstName.value,
-        lastName:lastName.value,
+        firstname:firstName.value,
+        lastname:lastName.value,
         email:email.value,
         password:password.value
     }

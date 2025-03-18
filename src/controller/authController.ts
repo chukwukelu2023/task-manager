@@ -10,16 +10,15 @@ export const loginUser = async (req:Request, res:Response)=>{
     try {
         const user = await findUserByEmail(email) as unknown as IUser
     if(!user){
-        return res.status(404).send("Invalid Credentials")
+        return res.status(404).send({message:"Invalid Credentials"})
     }
-    const checkPassword = await comparePassword(password,user.password) 
-
+    const checkPassword = await comparePassword(password,user.password)  
     if(!checkPassword){
-       return  res.status(404).send("Invalid Credentials")
+       return  res.status(404).send({message:"Invalid Credentials"})
     }
     const payload:IPayload = {
         id: user.id,
-        admin: user.isAdmin
+        admin: user.isadmin
     }
     const token = await signToken(payload)
        return res.status(201).send({id:user.id, token})

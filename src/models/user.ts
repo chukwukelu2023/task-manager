@@ -11,11 +11,11 @@ User.init({
         autoIncrement: true,
         primaryKey: true
       },
-    firstName:{
+    firstname:{
         type: DataTypes.STRING,
         allowNull: false,
     },
-    lastName:{
+    lastname:{
         type: DataTypes.STRING,
         allowNull:false
     },
@@ -33,7 +33,7 @@ User.init({
         type: DataTypes.STRING,
         allowNull:false
     },
-    isAdmin:{
+    isadmin:{
         type: DataTypes.BOOLEAN,
         allowNull: true,
         defaultValue: false
