@@ -1,17 +1,39 @@
-name: Build and Deploy Docker Image
+# name: Build and Deploy Docker Image
+
+# on:
+#   push:
+#     branches:
+#       - development
+#       - main
+# jobs:
+#   build_and_push:
+#     uses: chukwukelu2023/automation-hub/.github/workflows/image_build_dockerhub.yaml@main
+#     with:
+#       context-path: .
+#       tag-name: oluchioraekwe/taskmanager-app-dev:${{ github.run_number }}
+#       registry: docker.io
+#     secrets:
+#        REGISTRY_PASSWORD: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+#        REGISTRY_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+
+name: Computeshere Build
 
 on:
   push:
     branches:
       - development
       - main
+env:
+  IMAGE: oluchioraekwe/taskmanager-app-dev
 jobs:
   build_and_push:
-    uses: chukwukelu2023/automation-hub/.github/workflows/image_build_dockerhub.yaml@main
-    with:
-      context-path: .
-      tag-name: oluchioraekwe/taskmanager-app-dev:${{ github.run_number }}
-      registry: docker.io
-    secrets:
-       REGISTRY_PASSWORD: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-       REGISTRY_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout to Repo
+        uses: actions/checkout@v4
+
+      - name: Build Image
+        uses: computesphere/build-and-deploy-image-action.yaml@v1
+        with:
+          mode: build-only
+          name: ${{ vars.IMAGE }}
