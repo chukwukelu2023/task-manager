@@ -7,10 +7,11 @@ on:
       - main
 jobs:
   build_and_push:
-    uses: chukwukelu2023/automation-hub/.github/workflows/image_build_ghcr.yaml@main
+    uses: chukwukelu2023/automation-hub/.github/workflows/image_build_dockerhub.yaml@main
     with:
       context-path: .
-      tag-name: ghcr.io/chukwukelu2023/taskmanager-app:${{ github.run_number }}
+      tag-name: oluchioraekwe/taskmanager-app-dev:${{ github.run_number }}
+      registry: docker.io
     secrets:
-       GHCR_PAT: ${{ secrets.GHCR_PAT }}
-       REPO_OWNER: ${{ github.repository_owner }}
+       REGISTRY_PASSWORD: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+       REGISTRY_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
