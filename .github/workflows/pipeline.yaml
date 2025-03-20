@@ -65,7 +65,7 @@ jobs:
           token: hQrn0raZfRt8LzuZIgG6dMQ8AUXrWeRQ
           deployment_id: 66c87e0e-9878-4c6a-aecb-11d31860dc15
           registry: docker.io
-          # type: private
+          type: public
           # username: ${{ vars.REGISTRY_USERNAME }}
           # password: ${{ vars.REGISTRY_PASSWORD }}
 
