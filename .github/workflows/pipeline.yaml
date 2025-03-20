@@ -11,7 +11,7 @@ jobs:
     with:
       context-path: .
       tag-name: oluchioraekwe/taskmanager-app-dev:v.${{ github.run_number }}
-      registry: docker.io
+      registry_name: docker.io
     secrets:
        REGISTRY_PASSWORD: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
        REGISTRY_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
