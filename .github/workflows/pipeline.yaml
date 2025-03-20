@@ -46,7 +46,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - develop
+      - development
 
 jobs:
   build-and-deploy-image:
