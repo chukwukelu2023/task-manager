@@ -36,4 +36,4 @@ jobs:
         uses: computesphere/build-and-deploy-image-action.yaml@v1
         with:
           mode: build-only
-          name: ${{ vars.IMAGE }}
+          name: ${{ env.IMAGE }}
