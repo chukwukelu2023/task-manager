@@ -34,7 +34,7 @@ jobs:
 
       - name: Build Image
         id: Build
-        uses: computesphere/build-and-deploy-image-action.yaml@v1
+        uses: computesphere/build-and-deploy-image-action@v1
         with:
-          mode: build-only
+          mode: build-only  
           name: oluchioraekwe/taskmanager-app-dev:v.0.1
