@@ -66,6 +66,6 @@ jobs:
           deployment_id: 66c87e0e-9878-4c6a-aecb-11d31860dc15
           registry: docker.io
           type: public
-          # username: ${{ vars.REGISTRY_USERNAME }}
-          # password: ${{ vars.REGISTRY_PASSWORD }}
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
