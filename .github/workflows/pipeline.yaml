@@ -23,17 +23,18 @@ on:
     branches:
       - development
       - main
-env:
-  IMAGE: oluchioraekwe/taskmanager-app-dev
+
 jobs:
-  build_and_push:
+  build-and-deploy-image:
+    name: Build and Deploy
     runs-on: ubuntu-latest
+    environment: dev
     steps:
-      - name: Checkout to Repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Build Image
+        id: Build
         uses: computesphere/build-and-deploy-image-action.yaml@v1
         with:
           mode: build-only
-          name: ${{ env.IMAGE }}
+          name: oluchioraekwe/taskmanager-app-dev:v.0.1
