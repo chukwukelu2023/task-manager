@@ -22,7 +22,7 @@ Tasks.init({
   },
   status: {
     type: DataTypes.ENUM,
-    values: ['PENDING', 'INPROGRESS', 'ONHOLD', 'COMPLETED'],
+    values: ['PENDING', 'PROGRESS', 'ONHOLD', 'COMPLETED'],
     allowNull: true,
     defaultValue: 'PENDING',
     validate: {
