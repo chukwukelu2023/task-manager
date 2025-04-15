@@ -106,4 +106,6 @@ jobs:
         script: |
           cd /home/adminuser/backend
           ls -lh
+          node -v
+          npm -v
           
