@@ -88,17 +88,6 @@ jobs:
     - name: Run CLI
       run: ls -lh
 
-    # - name: Set up Node.js
-    #   uses: actions/setup-node@v3
-    #   with:
-    #     node-version: 18
-
-    # - name: Install Dependencies
-    #   run: npm install
-
-    # - name: Build Node App
-    #   run: npm run build
-
     - name: Deploy to EC2 via SSH
       uses: appleboy/scp-action@v0.1.7
       with:
