@@ -40,7 +40,36 @@
 #           name: oluchioraekwe/taskmanager-app-dev:v.0.1
 
 
-name: Build and Deploy Dev
+# name: Build and Deploy Dev
+
+# on:
+#   workflow_dispatch:
+#   push:
+#     branches:
+#       - development
+
+# jobs:
+#   build-and-deploy-image:
+#     name: Build and Deploy
+#     runs-on: ubuntu-latest
+#     environment: dev
+#     steps:
+#       - uses: actions/checkout@v4
+#       - name: Build and Deploy Image to ComputeSphere
+#         id: deploy-image
+#         uses: computesphere/build-and-deploy-image-action@v1
+#         with:
+#           mode: build-and-deploy
+#           name: docker.io/oluchioraekwe/taskmanager-app-dev:v.21
+#           account_id: 9ff02ad0-0cbf-4403-91e2-56b511841c75
+#           token: hQrn0raZfRt8LzuZIgG6dMQ8AUXrWeRQ
+#           deployment_id: 66c87e0e-9878-4c6a-aecb-11d31860dc15
+#           registry: docker.io
+#           type: public
+#           username: ${{ secrets.DOCKER_HUB_USERNAME }}
+#           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+name: Build and Deploy Node to EC2
 
 on:
   workflow_dispatch:
@@ -49,23 +78,40 @@ on:
       - development
 
 jobs:
-  build-and-deploy-image:
-    name: Build and Deploy
+  build-and-deploy:
     runs-on: ubuntu-latest
-    environment: dev
-    steps:
-      - uses: actions/checkout@v4
-      - name: Build and Deploy Image to ComputeSphere
-        id: deploy-image
-        uses: computesphere/build-and-deploy-image-action@v1
-        with:
-          mode: build-and-deploy
-          name: docker.io/oluchioraekwe/taskmanager-app-dev:v.21
-          account_id: 9ff02ad0-0cbf-4403-91e2-56b511841c75
-          token: hQrn0raZfRt8LzuZIgG6dMQ8AUXrWeRQ
-          deployment_id: 66c87e0e-9878-4c6a-aecb-11d31860dc15
-          registry: docker.io
-          type: public
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    # - name: Set up Node.js
+    #   uses: actions/setup-node@v3
+    #   with:
+    #     node-version: 18
+
+    # - name: Install Dependencies
+    #   run: npm install
+
+    # - name: Build Node App
+    #   run: npm run build
+
+    - name: Deploy to EC2 via SSH
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        password: ${{ secrets.EC2_PASSWORD }}
+        source: "./"
+        target: "/usr/codebase"
+
+    # - name: SSH into EC2 and move files
+    #   uses: appleboy/ssh-action@v0.1.10
+    #   with:
+    #     host: ${{ secrets.EC2_HOST }}
+    #     username: ${{ secrets.EC2_USER }}
+    #     password: ${{ secrets.EC2_PASSWORD }}
+    #     script: |
+    #       sudo rm -rf /var/www/html/*
+    #       sudo cp -r /tmp/react-app/* /var/www/html/
+    #       sudo systemctl restart nginx
