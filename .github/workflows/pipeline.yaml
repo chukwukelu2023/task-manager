@@ -115,7 +115,7 @@ jobs:
         username: ${{ secrets.EC2_USER }}
         password: ${{ secrets.EC2_PASSWORD }}
         script: |
-          sudo /home/adminuser/backend
-          sudo npm install
-          sudo npm run build
-          sudo npm start
+          sudo cd /home/adminuser/backend
+           npm install
+           npm run build
+           npm start
