@@ -106,7 +106,7 @@ jobs:
         username: ${{ secrets.EC2_USER }}
         password: ${{ secrets.EC2_PASSWORD }}
         source: "./"
-        target: "/usr/codebase"
+        target: "/home/adminuser/backend"
 
     # - name: SSH into EC2 and move files
     #   uses: appleboy/ssh-action@v0.1.10
