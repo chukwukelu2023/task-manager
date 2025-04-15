@@ -105,6 +105,8 @@ jobs:
         password: ${{ secrets.EC2_PASSWORD }}
         script: |
           cd /home/adminuser/backend
+          node -v
+          npm -v
           npm install
           npm run build
           npm start
