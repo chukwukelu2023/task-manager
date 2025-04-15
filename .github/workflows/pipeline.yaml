@@ -107,4 +107,5 @@ jobs:
           cd /home/adminuser/backend
           npm install
           npm run build
+          pm2 restart taskmanager
           
