@@ -106,5 +106,5 @@ jobs:
         script: |
           cd /home/adminuser/backend
           npm install
-          npm build
+          npm run build
           
